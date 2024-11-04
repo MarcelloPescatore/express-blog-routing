@@ -5,7 +5,6 @@ const fs = require('fs')
 const index = (req, res) => {
     let markup = ''
 
-
     posts.forEach(post => {
         const { title, slug, content, image, tags } = post;
 
@@ -20,7 +19,7 @@ const index = (req, res) => {
         `
     });
 
-    res.send(`<ul>${markup}</ul>`)
+    return res.send(`<ul>${markup}</ul>`)
 };
 
 // show: tramite il parametro dinamico che rappresenta lo slug del post, ritornerà un json con i dati del post
@@ -30,14 +29,16 @@ const show = (req, res) => {
         return res.status(404).send('Post non trovato');
     }
     
-    res.status(200).json({
+    return res.status(200).json({
         data: post
     })
 }
 
 // Creare inoltre un filtro in querystring per tag, che ritorna in formato json tutti i post che hanno quei tag
-const filter = (req, res) =>{
+const filter = (req, res) => {
     const {tag} = req.query;
+    console.log(tag);
+    
 
     if(!tag) {
         return res.status(400).json({ error: 'Nessun tag specificato' });
@@ -45,9 +46,11 @@ const filter = (req, res) =>{
 
     // utilizzo filter per filtrare i post che includono tag
     const postsFiltrati = posts.filter(post => post.tags.includes(tag));
+    console.log(postsFiltrati);
+    
 
-    res.status(200).json({ 
-        data: filteredPosts 
+    return res.status(200).json({ 
+        data: postsFiltrati 
     });
 }
 

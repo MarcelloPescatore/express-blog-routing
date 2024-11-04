@@ -8,7 +8,7 @@ router.get('/', PostsController.index);
 // rotta di show
 router.get('/:slug', PostsController.show);
 // rotta per tag
-router.get('/filter', PostsController.filterByTag);
+router.get('/filter', PostsController.filter);
 // Crea un nuovo post
 router.post('/store', PostsController.store); 
 
