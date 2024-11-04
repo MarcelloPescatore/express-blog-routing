@@ -13,7 +13,7 @@ const index = (req, res) => {
                 <h2>${title}</h2>
                 <h3>${slug}</h3>
                 <h4>${content}</h4>
-                <img src="../public/imgs/posts/${image}"</img> <br>
+                <img src="/imgs/posts/${image}"</img> <br>
                 <span>${tags}</span>
             </li>
         `
