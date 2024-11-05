@@ -7,7 +7,7 @@ const PostsRouter = require('./routing/posts.js');
 app.use(express.static('public'))
 
 // middleware 
-// app.use(express.json());
+app.use(express.json());
 // Posts API 
 app.use('/', PostsRouter);
 

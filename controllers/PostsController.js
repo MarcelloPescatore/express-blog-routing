@@ -58,16 +58,16 @@ const filter = (req, res) => {
 // Aggiungi il metodo store per la creazione di un nuovo post
 const store = (req, res) => {
     const post = {
-        title: rep.body.title,
-        slug: rep.body.slug,
-        content: rep.body.content,
-        image: rep.body.image,
-        tags: [rep.body.tags]
+        title: req.body.title,
+        slug: req.body.slug,
+        content: req.body.content,
+        image: req.body.image,
+        tags: [req.body.tags]
     }
 
     posts.push(post);
 
-    fstat.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
+    fs.writeFileSync('./db/db.js', `module.exports = ${JSON.stringify(posts, null, 4)}`)
 
     res.json({
         status: 201,
